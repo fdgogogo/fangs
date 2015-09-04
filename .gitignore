@@ -60,3 +60,10 @@ docs/_build/
 target/
 
 .venv
+
+node_modules/
+bower_components/
+.sass-cache/
+.idea/
+.tmp/
+dist/
