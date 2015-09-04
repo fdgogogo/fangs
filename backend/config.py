@@ -5,10 +5,11 @@ class Config(object):
 
 
 class ProductionConfig(Config):
-    DATABASE_URI = 'mysql://user@localhost/foo'
+    SQLALCHEMY_DATABASE_URI = 'mysql://'
 
 
 class DevelopmentConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///dev.sqlite3'
     DEBUG = True
 
 

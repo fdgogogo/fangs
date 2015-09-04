@@ -67,3 +67,6 @@ bower_components/
 .idea/
 .tmp/
 dist/
+
+.python-version
+dev.sqlite3
