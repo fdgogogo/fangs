@@ -36,6 +36,11 @@ class BlogComment(db.Model):
     created = db.Column(db.DateTime, server_default=db.func.now(), onupdate=db.func.now())
     modified = db.Column(db.DateTime, server_default=db.func.now())
 
+    title = db.Column(db.String(128))
+    author = db.Column(db.String(128))
+    author_email = db.Column(db.String(128))
+    content = db.Column(db.Text)
+
     post_id = db.Column(db.Integer, db.ForeignKey(BlogPost.id))
     post = db.relationship(BlogPost, backref=db.backref('comments', lazy='dynamic'))
 
