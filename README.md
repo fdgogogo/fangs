@@ -1,9 +1,10 @@
 # Fangs
 
----
-
 This is an experimental project by Jiaan Fang. 
 
-## Package Used
+## Technology overview
 
-- flask
+- Python 3.4.3
+- Flask
+- PostgreSQL
+- AngularJS
