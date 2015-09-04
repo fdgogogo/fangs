@@ -1,5 +1,6 @@
 
-from backend.fangs import app
+from backend import app
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.config.from_object('backend.config.DevelopmentConfig')
+    app.run()
