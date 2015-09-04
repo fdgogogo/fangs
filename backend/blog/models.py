@@ -13,6 +13,9 @@ class BlogCategory(db.Model):
         'order_by': order
     }
 
+    def __repr__(self):
+        return self.title
+
 
 class BlogPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,7 +26,10 @@ class BlogPost(db.Model):
 
     category_id = db.Column(db.Integer, db.ForeignKey(BlogCategory.id))
     category = db.relationship(BlogCategory, backref=db.backref('posts', lazy='dynamic'))
-#
+
+    def __repr__(self):
+        return self.title
+
 
 class BlogComment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -32,3 +38,5 @@ class BlogComment(db.Model):
 
     post_id = db.Column(db.Integer, db.ForeignKey(BlogPost.id))
     post = db.relationship(BlogPost, backref=db.backref('comments', lazy='dynamic'))
+
+
