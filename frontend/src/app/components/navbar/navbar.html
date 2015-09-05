@@ -1,4 +1,4 @@
-<div ng-controller="AppCtrl" layout="column" flex style="height: 100%;">
+<div ng-controller="AppCtrl" layout="column" flex id="side-nav">
     <section layout="row" flex>
         <md-sidenav class="md-sidenav-left md-whiteframe-z2 flex"
                     layout="column"
@@ -9,13 +9,11 @@
                 <h1 class="md-toolbar-tools"></h1>
             </md-toolbar>
 
-            <md-content layout-padding ng-controller="LeftCtrl">
-                <menu-link class="ng-isolate-scope">
-                    <a ng-click="toggleRight()" class="md-button md-default-theme">
-                        Search
-                    </a>
-                </menu-link>
-            </md-content>
+            <md-list layout-padding ng-controller="LeftCtrl">
+                <md-list-item ng-click="menuItem.ngClick(menuItem.params)" ng-repeat="menuItem in menus">
+                    {{ menuItem.name }}
+                </md-list-item>
+            </md-list>
 
         </md-sidenav>
         <md-content flex layout-padding ng-transclude>
