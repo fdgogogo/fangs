@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from backend import db
+from sqlalchemy.dialects.postgresql import ARRAY
 
 
 class BlogCategory(db.Model):
@@ -21,8 +22,9 @@ class BlogCategory(db.Model):
         'order_by': order
     }
 
-    def __repr__(self):
-        return self.title
+    # def __repr__(self):
+    #     _repr = '< Category: %s >' % self.title
+    #     return _repr
 
 
 class BlogPost(db.Model):
@@ -39,6 +41,9 @@ class BlogPost(db.Model):
                             index=True)
     category = db.relationship(lambda: BlogCategory,
                                backref=db.backref('posts', lazy='dynamic'))
+
+    tags = db.Column(ARRAY(db.String(64)),
+                     nullable=True, index=True)
 
     def __repr__(self):
         return self.title

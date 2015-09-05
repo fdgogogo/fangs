@@ -17,18 +17,9 @@ import re
 
 from flask.ext.script import Command, Option
 from flask.ext.script.commands import InvalidCommand
+from slugify import slugify
 
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
-
-
-def slugify(text, delim=u'-'):
-    """Generates an ASCII-only slug."""
-    result = []
-    for word in _punct_re.split(text.lower()):
-        word = word.encode('translit/long')
-        if word:
-            result.append(word)
-    return delim.join(result)
 
 
 def escape(text):
@@ -72,11 +63,12 @@ class ImportWordpress(Command):
     """
     option_list = (
         Option('--input-xml', '-i', dest='input_xml'),
+        Option('--flush', '-f', action='store_true', dest='flush')
     )
 
-    def run(self, input_xml, **kwargs):
+    def run(self, input_xml, flush, **kwargs):
 
-        self.handle_import({'url': input_xml})
+        self.handle_import({'url': input_xml, 'flush': flush})
 
     def get_text(self, xml, name, nodetype):
         """
@@ -90,8 +82,14 @@ class ImportWordpress(Command):
         Gets the posts from either the provided URL or the path if it
         is local.
         """
-
         url = options.get("url")
+        flush = options.get('flush')
+        if flush:
+            from backend.blog.models import BlogCategory, BlogComment, BlogPost
+            BlogComment.query.delete()
+            BlogPost.query.delete()
+            BlogCategory.query.delete()
+
         if url is None:
             raise InvalidCommand("Usage is import_wordpress ")
         try:
@@ -123,7 +121,6 @@ class ImportWordpress(Command):
             terms = defaultdict(set)
             for item in getattr(entry, "tags", []):
                 terms[item.scheme].add(item.term)
-            print(terms)
             if entry.wp_post_type == "post":
                 post = self.add_post(title=entry.title, content=content,
                                      pub_date=pub_date, tags=terms["tag"],
@@ -156,40 +153,47 @@ class ImportWordpress(Command):
         from backend import db
 
         post = BlogPost()
-        post.title = kwargs.get('title')
+        title = kwargs.get('title')
+        post.title = title[:128]
+        post.slug = slugify(title)[:128]
         post.content = kwargs.get('content')
         post.created = kwargs.get('pub_date')
-        categories = kwargs.get('category')
-        print(categories)
+        post.tags = kwargs.get('tags')
 
-        # if categories:
-        #     for category_name in categories:
-        #         category = BlogCategory.query.get(title=category_name)
-        #         if not category:
-        #             category = BlogCategory()
-        #             category.title = category
-        #             category.slug = slugify(category_name)
-        #             db.session.add(category)
-        #             post.category = category
-        #
-        # db.session.add(post)
-        # db.session.commit()
+        categories = kwargs.get('categories')
+
+        if categories:
+            for category_name in categories:
+                category_obj = BlogCategory.query.filter_by(
+                    title=category_name).first()
+                if not category_obj:
+                    category_obj = BlogCategory()
+                    category_obj.title = category_name[:128]
+                    category_obj.slug = slugify(category_name)
+                    db.session.add(category_obj)
+                    db.session.commit()
+                post.category = category_obj
+
+        db.session.add(post)
+        db.session.commit()
 
         return post
 
     def add_comment(self, **kwargs):
         from backend.blog.models import BlogComment
         from backend import db
-        # post = kwargs.get('post')
-        # comment = BlogComment()
-        # comment.post = post
-        # comment.website = kwargs.get('website')
-        # comment.author = kwargs.get('name')
-        # comment.author_email = kwargs.get('email')
-        # comment.content = kwargs.get('body')
-        # comment.created = kwargs.get('pub_date')
-        # db.session.add(comment)
-        # db.session.commit()
+        post = kwargs.get('post')
+
+        comment = BlogComment()
+        comment.post = post
+        comment.website = kwargs.get('website')
+        comment.author = kwargs.get('name')
+        comment.author_email = kwargs.get('email')
+        comment.content = kwargs.get('body')
+        comment.created = kwargs.get('pub_date')
+
+        db.session.add(comment)
+        db.session.commit()
 
     def wp_caption(self, post):
         """
