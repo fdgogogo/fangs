@@ -123,7 +123,7 @@ class ImportWordpress(Command):
                 terms[item.scheme].add(item.term)
             if entry.wp_post_type == "post":
                 post = self.add_post(title=entry.title, content=content,
-                                     pub_date=pub_date, tags=terms["tag"],
+                                     pub_date=pub_date, tags=terms["post_tag"],
                                      categories=terms["category"],
                                      old_url=entry.id)
 
