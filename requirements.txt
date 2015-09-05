@@ -3,5 +3,6 @@ jinja2
 Flask
 Flask-Admin
 Flask-Migrate
+Flask-Restless
 
 awesome-slugify
