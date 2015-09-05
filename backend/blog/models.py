@@ -22,9 +22,8 @@ class BlogCategory(db.Model):
         'order_by': order
     }
 
-    # def __repr__(self):
-    #     _repr = '< Category: %s >' % self.title
-    #     return _repr
+    def __repr__(self):
+        return '%s' % self.title
 
 
 class BlogPost(db.Model):

@@ -1,4 +1,5 @@
 from flask.ext.admin.contrib.sqla import ModelView
+from flask_admin.form import rules
 from wtforms import TextAreaField
 from wtforms.widgets import TextArea
 
@@ -21,6 +22,7 @@ class CKTextAreaField(TextAreaField):
 
 class BlogCategoryModelView(ModelView):
     column_exclude_list = ('slug',)
+    can_view_details = True
 
 
 class BlogPostModelView(ModelView):
@@ -31,11 +33,17 @@ class BlogPostModelView(ModelView):
     }
     create_template = 'admin/ckeditor.html'
     edit_template = 'admin/ckeditor.html'
-    inline_models = [models.BlogComment, ]
-
+    # inline_models = [models.BlogComment, ]
+    column_searchable_list = ('title', 'content')
 
 class BlogCommentModelView(ModelView):
     column_exclude_list = ('content',)
+    form_overrides = {
+        'content': CKTextAreaField
+    }
+    create_template = 'admin/ckeditor.html'
+    edit_template = 'admin/ckeditor.html'
+    can_view_details = True
 
 
 admin.add_view(BlogCategoryModelView(models.BlogCategory, db.session))
