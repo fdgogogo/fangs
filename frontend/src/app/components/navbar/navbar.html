@@ -9,11 +9,11 @@
                 <h1 class="md-toolbar-tools"></h1>
             </md-toolbar>
 
-            <md-list ng-controller="LeftCtrl">
+            <md-list ng-controller="LeftCtrl" class="md-default-primary">
                 <span ng-repeat="menuItem in menus">
-
                     <md-list-item ng-click="menuItem.ngClick(menuItem.param)"
-                                  ng-if="menuItem.type == 'action'">
+                                  ng-if="menuItem.type == 'action'"
+                                  class="md-default-warm">
                     {{ menuItem.name }}
                     </md-list-item>
 
