@@ -9,10 +9,16 @@
                 <h1 class="md-toolbar-tools"></h1>
             </md-toolbar>
 
-            <md-list layout-padding ng-controller="LeftCtrl">
-                <md-list-item ng-click="menuItem.ngClick(menuItem.params)" ng-repeat="menuItem in menus">
+            <md-list ng-controller="LeftCtrl">
+                <span ng-repeat="menuItem in menus">
+
+                    <md-list-item ng-click="menuItem.ngClick(menuItem.param)"
+                                  ng-if="menuItem.type == 'action'">
                     {{ menuItem.name }}
-                </md-list-item>
+                    </md-list-item>
+
+                    <md-divider ng-if="menuItem.type == 'divider'"></md-divider>
+                </span>
             </md-list>
 
         </md-sidenav>

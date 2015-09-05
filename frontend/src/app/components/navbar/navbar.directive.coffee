@@ -23,10 +23,12 @@ angular.module "angular"
 ).controller('LeftCtrl', ($scope, $timeout, $mdSidenav, $log, $location) ->
   $scope.jump = (url) ->
     $location.path(url)
+
   $scope.menus = [
-    {'name': 'Search', ngClick: $scope.toggleRight},
-    {'name': 'Home', ngClick: $scope.jump, params: '/'},
-    {'name': 'Blog', ngClick: $scope.jump, params: '/blog'}
+    {type: 'action', name: 'Search', ngClick: $scope.toggleRight, param: ''},
+    {type: 'divider'},
+    {type: 'action', name: 'Home', ngClick: $scope.jump, param: '/'}
+    {type: 'action', name: 'Blog', ngClick: $scope.jump, param: '/blog'}
   ]
   $scope.close = ->
     $mdSidenav('left').close().then ->
