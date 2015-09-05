@@ -1,13 +1,43 @@
-<md-toolbar layout="row" layout-align="center center">
+<div ng-controller="AppCtrl" layout="column" style="height:880px;">
+    <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+                    layout="column"
+                    md-component-id="left"
+                    md-is-locked-open="$mdMedia('gt-md')">
 
-  <md-button href="https://github.com/Swiip/generator-gulp-angular">Gulp Angular</md-button>
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Sidenav Left</h1>
+            </md-toolbar>
 
-  <section flex layout="row" layout-align="left center">
-    <md-button href="#" class="md-raised">Home</md-button>
-    <md-button href="#" class="md-raised">About</md-button>
-    <md-button href="#" class="md-raised">Contact</md-button>
-  </section>
+            <md-content layout-padding ng-controller="LeftCtrl">
+                <menu-link class="ng-isolate-scope">
+                    <a ng-click="toggleRight()" class="md-button md-default-theme">
+                        Search
+                    </a>
+                </menu-link>
+            </md-content>
 
-  <md-button class="acme-navbar-text">Application was created {{ vm.relativeDate }}.</md-button>
+        </md-sidenav>
+        <md-content flex layout-padding ng-transclude>
 
-</md-toolbar>
+        </md-content>
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2"
+                    md-component-id="right">
+            <md-toolbar class="md-theme-light">
+                <h1 class="md-toolbar-tools">Sidenav Right</h1>
+            </md-toolbar>
+            <md-content ng-controller="RightCtrl" layout-padding>
+                <form>
+                    <md-input-container>
+                        <label for="testInput">Test input</label>
+                        <input type="text" id="testInput"
+                               ng-model="data" md-sidenav-focus>
+                    </md-input-container>
+                </form>
+                <md-button ng-click="close()" class="md-primary">
+                    Close Sidenav Right
+                </md-button>
+            </md-content>
+        </md-sidenav>
+    </section>
+</div>

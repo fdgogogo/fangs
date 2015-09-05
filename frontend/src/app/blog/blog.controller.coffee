@@ -1,5 +1,5 @@
 angular.module "angular"
-.controller "MainController", ($timeout, webDevTec, toastr) ->
+.controller "BlogController", ($timeout, webDevTec, toastr, Restangular) ->
   vm = this
   activate = ->
     getWebDevTec()
@@ -16,9 +16,11 @@ angular.module "angular"
     angular.forEach vm.awesomeThings, (awesomeThing) ->
       awesomeThing.rank = Math.random()
 
-  vm.awesomeThings = []
+  vm.awesomeThings = [12]
   vm.classAnimation = ''
   vm.creationDate = 1441371210288
   vm.showToastr = showToastr
+  vm.categories = Restangular.all('blog_category').getList().$object
   activate()
   return vm
+
