@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 
 from flask.ext.admin import Admin
@@ -31,13 +30,6 @@ manager.add_command('import_wordpress', ImportWordpress)
 
 from backend.blog import blog
 from backend.blog.models import BlogComment, BlogCategory, BlogPost
-
-
-def add_cors_headers(response):
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    return response
-
 
 blog_post_api_blueprint = api_manager.create_api(
     BlogPost,

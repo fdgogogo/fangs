@@ -1,12 +1,12 @@
-<div ng-controller="AppCtrl" layout="column" style="height:880px;">
+<div ng-controller="AppCtrl" layout="column" flex style="height: 100%;">
     <section layout="row" flex>
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2 flex"
                     layout="column"
                     md-component-id="left"
-                    md-is-locked-open="$mdMedia('gt-md')">
+                    md-is-locked-open="$mdMedia('gt-md')" flex>
 
-            <md-toolbar class="md-theme-indigo">
-                <h1 class="md-toolbar-tools">Sidenav Left</h1>
+            <md-toolbar>
+                <h1 class="md-toolbar-tools"></h1>
             </md-toolbar>
 
             <md-content layout-padding ng-controller="LeftCtrl">
@@ -22,20 +22,20 @@
 
         </md-content>
         <md-sidenav class="md-sidenav-right md-whiteframe-z2"
-                    md-component-id="right">
+                    md-component-id="right" flex>
             <md-toolbar class="md-theme-light">
-                <h1 class="md-toolbar-tools">Sidenav Right</h1>
+                <h1 class="md-toolbar-tools">Search</h1>
             </md-toolbar>
             <md-content ng-controller="RightCtrl" layout-padding>
                 <form>
                     <md-input-container>
-                        <label for="testInput">Test input</label>
+                        <label for="testInput">Keyword</label>
                         <input type="text" id="testInput"
                                ng-model="data" md-sidenav-focus>
                     </md-input-container>
                 </form>
                 <md-button ng-click="close()" class="md-primary">
-                    Close Sidenav Right
+                    Close
                 </md-button>
             </md-content>
         </md-sidenav>

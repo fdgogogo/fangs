@@ -1,6 +1,6 @@
 angular.module "angular"
 .config ($logProvider, toastr, $locationProvider, RestangularProvider, $mdThemingProvider) ->
-# Enable log
+  # Enable log
   $logProvider.debugEnabled true
   # Set options third-party lib
   toastr.options.timeOut = 3000
@@ -27,5 +27,5 @@ angular.module "angular"
 
   $mdThemingProvider.theme('default')
     .primaryPalette('indigo')
-    .accentPalette('blue');
+    .accentPalette('blue')
 
