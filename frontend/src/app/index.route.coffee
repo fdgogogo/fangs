@@ -6,5 +6,10 @@ angular.module "angular"
         templateUrl: "app/main/main.html"
         controller: "MainController"
         controllerAs: "main"
+      .state "blog",
+        url: "/blog"
+        templateUrl: "app/blog/blog.html"
+        controller: "BlogController"
+        controllerAs: "blog"
 
     $urlRouterProvider.otherwise '/'
