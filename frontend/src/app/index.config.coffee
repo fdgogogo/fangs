@@ -15,10 +15,12 @@ angular.module "angular"
     RestangularProvider.addResponseInterceptor (data, operation, what, url, response, deferred) ->
       extractedData = undefined
       if operation == 'getList'
-        extractedData = data.objects
-        meta = angular.copy(data.objects)
-        delete meta.objects
-        extractedData.meta = meta
+
+        extractedData = data['objects']
+
+        meta = angular.copy(data)
+        delete meta['objects']
+        extractedData['meta'] = meta
       else
         extractedData = data
       extractedData
