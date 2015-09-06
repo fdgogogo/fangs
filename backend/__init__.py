@@ -1,5 +1,3 @@
-import os
-
 from flask.ext.admin import Admin
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.restless import APIManager
@@ -11,9 +9,7 @@ from flask.ext.cors import CORS
 from backend.utils.wordpress_importer import ImportWordpress
 
 app = Flask(__name__)
-
-app.config.from_object(
-    os.getenv('FANGS_CONFIG_MODULE', 'backend.config.ProductionConfig'))
+app.config.from_pyfile('config.py')
 
 CORS(app)
 db = SQLAlchemy(app)
