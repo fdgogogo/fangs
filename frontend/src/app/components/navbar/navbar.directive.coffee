@@ -30,6 +30,9 @@ angular.module "angular"
     {type: 'action', name: 'Home', ngClick: $scope.jump, param: '/'}
     {type: 'action', name: 'Blog', ngClick: $scope.jump, param: '/blog'}
   ]
+  $scope.menuBackground = (index) ->
+    return {'background-color': 'hsla(0, 100%, 50%, 0.5)'}
+
   $scope.close = ->
     $mdSidenav('left').close().then ->
 ).controller 'RightCtrl', ($scope, $timeout, $mdSidenav, $log) ->

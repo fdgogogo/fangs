@@ -5,14 +5,17 @@
                     md-component-id="left"
                     md-is-locked-open="$mdMedia('gt-md')" flex>
 
-            <md-toolbar>
-                <h1 class="md-toolbar-tools"></h1>
-            </md-toolbar>
 
             <md-list ng-controller="LeftCtrl" class="md-default-primary">
+                <span ng-repeat="menuItem in menus"
+                      ng-style="menuBackground($index)"
+                      ng-if="menuItem.type == 'custom'">
+                    {{ menuItem.content }}
+                </span>
                 <span ng-repeat="menuItem in menus">
                     <md-list-item ng-click="menuItem.ngClick(menuItem.param)"
                                   ng-if="menuItem.type == 'action'"
+                                  ng-style="menuBackground($index)"
                                   class="md-default-warm">
                     {{ menuItem.name }}
                     </md-list-item>
