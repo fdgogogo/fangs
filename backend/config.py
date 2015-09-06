@@ -5,7 +5,7 @@ class Config(object):
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql://'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://'
 
 
 class DevelopmentConfig(Config):
