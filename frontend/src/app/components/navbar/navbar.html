@@ -3,8 +3,8 @@
         <md-sidenav class="md-sidenav-left md-whiteframe-z2 flex"
                     layout="column"
                     md-component-id="left"
+                    ng-style="menuBackground(-1)"
                     md-is-locked-open="$mdMedia('gt-md')" flex>
-
 
             <md-list ng-controller="LeftCtrl" class="md-default-primary">
                 <span ng-repeat="menuItem in menus"
