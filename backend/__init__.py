@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-import os
-
 from flask.ext.admin import Admin
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.restless import APIManager
@@ -12,9 +9,7 @@ from flask.ext.cors import CORS
 from backend.utils.wordpress_importer import ImportWordpress
 
 app = Flask(__name__)
-
-app.config.from_object(
-    os.getenv('FANGS_CONFIG_MODULE', 'backend.config.ProductionConfig'))
+app.config.from_pyfile('config.py')
 
 CORS(app)
 db = SQLAlchemy(app)
@@ -31,13 +26,6 @@ manager.add_command('import_wordpress', ImportWordpress)
 
 from backend.blog import blog
 from backend.blog.models import BlogComment, BlogCategory, BlogPost
-
-
-def add_cors_headers(response):
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    return response
-
 
 blog_post_api_blueprint = api_manager.create_api(
     BlogPost,
