@@ -9,8 +9,9 @@ angular.module "angular"
   toastr.options.progressBar = true
   $locationProvider.html5Mode(
     enabled: true
-    requireBase: false
+    requireBase: true
   ).hashPrefix('!')
+
   RestangularProvider.setBaseUrl('http://localhost:5000/api/v1')
   RestangularProvider.addResponseInterceptor (data, operation, what, url, response, deferred) ->
     extractedData = undefined

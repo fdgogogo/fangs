@@ -34,7 +34,6 @@ angular.module "angular"
     l = lBase + (index / menuLen) * lDelta
 
     style = {'background-color': 'hsl(' + h + ',' + s + '%,' + l + '%)'}
-    console.log(style, index)
     style
 
 ).controller('LeftCtrl', ($scope, $timeout, $mdSidenav, $log, $location) ->
@@ -65,7 +64,6 @@ angular.module "angular"
     l = lBase + (index/menuLen) * lDelta
 
     style = {'background-color': 'hsl('+h+','+s+'%,'+l+'%)'}
-    console.log(style, index)
     style
 
   $scope.close = ->

@@ -1,0 +1,14 @@
+<md-content class="md-padding">
+    <md-card ng-repeat="post in postList.posts">
+        <md-card-content>
+            <h2 class="md-title">
+                <a ng-href="/blog/post/{{ post.slug }}">{{ post.title }}</a>
+            </h2>
+            <md-content></md-content>
+        </md-card-content>
+        <div class="md-actions" layout="row" layout-align="end center">
+            <md-button>Action 1</md-button>
+            <md-button>Action 2</md-button>
+        </div>
+    </md-card>
+</md-content>
