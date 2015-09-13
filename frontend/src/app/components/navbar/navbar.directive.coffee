@@ -35,7 +35,6 @@ angular.module "angular"
 
     style = {'background-color': 'hsl(' + h + ',' + s + '%,' + l + '%)'}
     style
-
 ).controller('LeftCtrl', ($scope, $timeout, $mdSidenav, $log, $location) ->
   $scope.jump = (url) ->
     $location.path(url)
@@ -59,19 +58,22 @@ angular.module "angular"
     lBase = 50
     lDelta = 30
 
-    h = hBase + (index/menuLen) * hDelta
-    s = sBase + (index/menuLen) * sDelta
-    l = lBase + (index/menuLen) * lDelta
+    h = hBase + (index / menuLen) * hDelta
+    s = sBase + (index / menuLen) * sDelta
+    l = lBase + (index / menuLen) * lDelta
 
-    style = {'background-color': 'hsl('+h+','+s+'%,'+l+'%)'}
+    style = {'background-color': 'hsl(' + h + ',' + s + '%,' + l + '%)'}
     style
 
   $scope.close = ->
     $mdSidenav('left').close().then ->
-).controller 'RightCtrl', ($scope, $timeout, $mdSidenav, $log) ->
+).controller('RightCtrl', ($scope, $timeout, $mdSidenav, $log) ->
   $scope.close = ->
     $mdSidenav('right').close().then ->
       $log.debug 'close RIGHT is done'
+).controller('ToolbarCtrl', ($scope) ->
+  $scope.title = 'Title'
+)
 
 
 
