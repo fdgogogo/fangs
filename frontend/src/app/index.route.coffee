@@ -16,5 +16,10 @@ angular.module "angular"
         templateUrl: "app/blog/post_list/post_list.html"
         controller: "BlogPostListController"
         controllerAs: "postList"
+      .state "blogPost",
+        url: "/blog/post"
+        templateUrl: "app/blog/post/post_list.html"
+        controller: "BlogPostController"
+        controllerAs: "post"
 
     $urlRouterProvider.otherwise '/'
