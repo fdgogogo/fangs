@@ -5,7 +5,7 @@
 // bower:scss
 // endbower
 
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700,700italic,400italic);
+@import url(http://fonts.useso.com/css?family=Roboto+Slab:400,700|Roboto:400,700,700italic,400italic);
 
 html {
   font-family: 'Roboto Slab', serif;
@@ -13,9 +13,11 @@ html {
 }
 body {
   height: 100% !important;
+
 }
 #main {
   height: 100%;
+
 }
 [layout=row] {
   flex-direction: row;

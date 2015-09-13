@@ -25,9 +25,12 @@
             </md-list>
 
         </md-sidenav>
-        <md-content flex layout-padding ng-transclude>
-
-        </md-content>
+        <md-toolbar class="md-tall md-accent" ng-controller="ToolbarCtrl">
+          <h2 class="md-toolbar-tools">
+            <span>{{ title }}</span>
+          </h2>
+        </md-toolbar>
+        <md-content flex ng-transclude></md-content>
         <md-sidenav class="md-sidenav-right md-whiteframe-z2"
                     md-component-id="right" flex>
             <md-toolbar class="md-theme-light">

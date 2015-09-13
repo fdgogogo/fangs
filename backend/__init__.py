@@ -46,7 +46,7 @@ blog_comment_api_blueprint = api_manager.create_api(
 
 blog_category_api_blueprint = api_manager.create_api(
     BlogCategory,
-    results_per_page=10,
+    results_per_page=100,
     primary_key='slug',
     exclude_columns=['posts'],
     url_prefix='/api/v1',
