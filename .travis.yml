@@ -3,5 +3,5 @@ python:
   - "3.2"
   - "3.3"
   - "3.4"
-install: "pip install -r backends/requirements.txt"
+install: "pip install -r backend/requirements.txt"
 script: python -m unittest discover backend/tests
