@@ -22,7 +22,7 @@ angular.module "angular"
   # background gradient
   $scope.menuBackground = (index) ->
     menuLen = 10
-    hBase = 240
+    hBase = 210
     hDelta = 0
     sBase = 60
     sDelta = 30
@@ -35,7 +35,6 @@ angular.module "angular"
 
     style = {'background-color': 'hsl(' + h + ',' + s + '%,' + l + '%)'}
     style
-
 ).controller('LeftCtrl', ($scope, $timeout, $mdSidenav, $log, $location) ->
   $scope.jump = (url) ->
     $location.path(url)
@@ -52,26 +51,29 @@ angular.module "angular"
     menuLen = $scope.menus.length + 1
     if index == -1
       index = menuLen
-    hBase = 240
+    hBase = 200
     hDelta = 0
     sBase = 60
     sDelta = 30
     lBase = 50
     lDelta = 30
 
-    h = hBase + (index/menuLen) * hDelta
-    s = sBase + (index/menuLen) * sDelta
-    l = lBase + (index/menuLen) * lDelta
+    h = hBase + (index / menuLen) * hDelta
+    s = sBase + (index / menuLen) * sDelta
+    l = lBase + (index / menuLen) * lDelta
 
-    style = {'background-color': 'hsl('+h+','+s+'%,'+l+'%)'}
+    style = {'background-color': 'hsl(' + h + ',' + s + '%,' + l + '%)'}
     style
 
   $scope.close = ->
     $mdSidenav('left').close().then ->
-).controller 'RightCtrl', ($scope, $timeout, $mdSidenav, $log) ->
+).controller('RightCtrl', ($scope, $timeout, $mdSidenav, $log) ->
   $scope.close = ->
     $mdSidenav('right').close().then ->
       $log.debug 'close RIGHT is done'
+).controller('ToolbarCtrl', ($scope) ->
+  $scope.title = 'Title'
+)
 
 
 

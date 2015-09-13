@@ -1,9 +1,9 @@
-<div layout="vertical" layout-fill>
+<div layout-fill>
     <section>
         <h1>文章分类</h1>
     </section>
     <section>
-        <div class="techs" layout-align="center">
+        <div layout-align="center">
             <md-card ng-repeat="category in blog.categories | orderBy:'rank'">
                 <h3>{{ category.title }}</h3>
                 <p>{{ category.description }}</p>
