@@ -1,4 +1,5 @@
 # Fangs
+[![Build Status](https://travis-ci.org/fdgogogo/fangs.svg?branch=master)](https://travis-ci.org/fdgogogo/fangs)
 
 This is an experimental project.
 

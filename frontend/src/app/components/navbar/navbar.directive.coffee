@@ -22,7 +22,7 @@ angular.module "angular"
   # background gradient
   $scope.menuBackground = (index) ->
     menuLen = 10
-    hBase = 240
+    hBase = 210
     hDelta = 0
     sBase = 60
     sDelta = 30
@@ -52,7 +52,7 @@ angular.module "angular"
     menuLen = $scope.menus.length + 1
     if index == -1
       index = menuLen
-    hBase = 240
+    hBase = 200
     hDelta = 0
     sBase = 60
     sDelta = 30
