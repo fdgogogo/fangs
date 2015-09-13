@@ -27,6 +27,10 @@ manager.add_command('import_wordpress', ImportWordpress)
 from backend.blog import blog
 from backend.blog.models import BlogComment, BlogCategory, BlogPost
 
+def post_get_many(*args, **kwargs):
+    print(args)
+    print(kwargs)
+
 blog_post_api_blueprint = api_manager.create_api(
     BlogPost,
     primary_key='slug',
@@ -44,7 +48,7 @@ blog_category_api_blueprint = api_manager.create_api(
     BlogCategory,
     results_per_page=10,
     primary_key='slug',
-    exclude_columns=['posts.content'],
+    exclude_columns=['posts'],
     url_prefix='/api/v1',
     methods=['GET', ])
 

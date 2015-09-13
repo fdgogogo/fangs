@@ -1,15 +1,24 @@
 angular.module "angular"
-  .config ($stateProvider, $urlRouterProvider) ->
-    $stateProvider
-      .state "home",
-        url: "/"
-        templateUrl: "app/main/main.html"
+  .config ($routeProvider) ->
+    $routeProvider
+      .when('/',
+        templateUrl: "/app/main/main.html"
         controller: "MainController"
         controllerAs: "main"
-      .state "blog",
-        url: "/blog"
-        templateUrl: "app/blog/blog.html"
+      )
+      .when('/blog',
+        templateUrl: "/app/blog/blog.html"
         controller: "BlogController"
         controllerAs: "blog"
-
-    $urlRouterProvider.otherwise '/'
+      )
+      .when("/blog/categories/:categorySlug",
+        templateUrl: "/app/blog/post_list/post_list.html"
+        controller: "BlogPostListController"
+        controllerAs: "postList"
+      )
+      .when("/blog/post/:postSlug",
+        templateUrl: "/app/blog/post/post.html"
+        controller: "BlogPostController"
+        controllerAs: "post"
+      )
+      .otherwise(redirectTo: '/')
