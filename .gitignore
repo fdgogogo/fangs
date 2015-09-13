@@ -70,3 +70,5 @@ dist/
 
 .python-version
 dev.sqlite3
+
+local_config.py

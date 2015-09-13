@@ -1,41 +1,48 @@
-<div ng-controller="AppCtrl" layout="column" style="height:880px;">
+<div ng-controller="AppCtrl" layout="column" flex id="side-nav">
     <section layout="row" flex>
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2 flex"
                     layout="column"
                     md-component-id="left"
-                    md-is-locked-open="$mdMedia('gt-md')">
+                    ng-style="menuBackground(-1)"
+                    md-is-locked-open="$mdMedia('gt-md')" flex>
 
-            <md-toolbar class="md-theme-indigo">
-                <h1 class="md-toolbar-tools">Sidenav Left</h1>
-            </md-toolbar>
+            <md-list ng-controller="LeftCtrl" class="md-default-primary">
+                <span ng-repeat="menuItem in menus"
+                      ng-style="menuBackground($index)"
+                      ng-if="menuItem.type == 'custom'">
+                    {{ menuItem.content }}
+                </span>
+                <span ng-repeat="menuItem in menus">
+                    <md-list-item ng-click="menuItem.ngClick(menuItem.param)"
+                                  ng-if="menuItem.type == 'action'"
+                                  ng-style="menuBackground($index)"
+                                  class="md-default-warm">
+                    {{ menuItem.name }}
+                    </md-list-item>
 
-            <md-content layout-padding ng-controller="LeftCtrl">
-                <menu-link class="ng-isolate-scope">
-                    <a ng-click="toggleRight()" class="md-button md-default-theme">
-                        Search
-                    </a>
-                </menu-link>
-            </md-content>
+                    <md-divider ng-if="menuItem.type == 'divider'"></md-divider>
+                </span>
+            </md-list>
 
         </md-sidenav>
         <md-content flex layout-padding ng-transclude>
 
         </md-content>
         <md-sidenav class="md-sidenav-right md-whiteframe-z2"
-                    md-component-id="right">
+                    md-component-id="right" flex>
             <md-toolbar class="md-theme-light">
-                <h1 class="md-toolbar-tools">Sidenav Right</h1>
+                <h1 class="md-toolbar-tools">Search</h1>
             </md-toolbar>
             <md-content ng-controller="RightCtrl" layout-padding>
                 <form>
                     <md-input-container>
-                        <label for="testInput">Test input</label>
+                        <label for="testInput">Keyword</label>
                         <input type="text" id="testInput"
                                ng-model="data" md-sidenav-focus>
                     </md-input-container>
                 </form>
                 <md-button ng-click="close()" class="md-primary">
-                    Close Sidenav Right
+                    Close
                 </md-button>
             </md-content>
         </md-sidenav>
