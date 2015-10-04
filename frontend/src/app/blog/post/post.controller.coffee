@@ -1,9 +1,9 @@
 angular.module "angular"
-.controller "BlogPostController", (Restangular, $routeParams) ->
+.controller "BlogPostController", (Restangular, $stateParams) ->
   vm = this
   vm.post = Restangular.one(
     'blog_post',
-    $routeParams['postSlug']
+    $stateParams['postSlug']
   ).get().$object
   vm.log = ->
     console.log(vm.post)

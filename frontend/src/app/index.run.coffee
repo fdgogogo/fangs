@@ -1,5 +1,7 @@
 angular.module "angular"
   .run ($log, $rootScope) ->
     $log.debug 'runBlock end'
-#    $rootScope.$on("$stateChangeError", console.log.bind(console));
+    $rootScope.$on '$stateChangeError', (event, unfoundState, fromState, fromParams) ->
+      console.log event
 
+# ---

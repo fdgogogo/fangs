@@ -5,7 +5,6 @@
                 <div ng-repeat="category in blog.categories | orderBy:'rank'">
                     <md-list-item ng-click="blog.jumpToCategory(category.slug)">
                         <p>{{ category.title }}</p>
-
                     </md-list-item>
                     <md-divider></md-divider>
                 </div>

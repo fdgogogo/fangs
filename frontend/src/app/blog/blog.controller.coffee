@@ -1,8 +1,8 @@
 angular.module "angular"
-.controller "BlogController", (Restangular, $location) ->
+.controller "BlogController", (Restangular, $location, $state) ->
   vm = this
   vm.categories = Restangular.all('blog_category').getList().$object
   vm.jumpToCategory = (slug) ->
-    $location.path('/blog/categories/' + slug)
+    $state.go('blog.category', {'slug': slug})
   return vm
 
