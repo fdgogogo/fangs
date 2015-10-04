@@ -29,6 +29,5 @@ angular.module "angular"
     .primaryPalette('indigo')
     .accentPalette('blue')
 
-  $breadcrumbProvider.setOptions({
+  $breadcrumbProvider.setOptions
     templateUrl: '/app/components/breadcrumbs/breadcrumbs.html'
-  });
