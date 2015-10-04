@@ -11,13 +11,14 @@ class BlogCategory(db.Model):
 
     order = db.Column(db.SmallInteger, default=0)
 
+    description = db.Column(db.Text, nullable=True)
+
     parent_id = db.Column(db.Integer, db.ForeignKey('blog_category.id'),
                           index=True)
     parent = db.relationship(lambda: BlogCategory,
                              remote_side=id,
                              backref=db.backref('sub_categories',
                                                 lazy='dynamic'))
-
     __mapper_args__ = {
         'order_by': order
     }
@@ -40,6 +41,8 @@ class BlogPost(db.Model):
                             index=True)
     category = db.relationship(lambda: BlogCategory,
                                backref=db.backref('posts', lazy='dynamic'))
+
+    excerpt = db.Column(db.Text, nullable=True)
 
     tags = db.Column(ARRAY(db.String(64)),
                      nullable=True, index=True)

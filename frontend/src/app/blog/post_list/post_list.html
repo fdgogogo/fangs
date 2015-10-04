@@ -4,7 +4,10 @@
             <h2 class="md-title" ng-click="postList.jumpToPost(post.slug)">
                 {{ post.title }}
             </h2>
-            <md-content></md-content>
+            <md-content ng-if="post.excerpt" ng-bind-html="post.excerpt">
+            </md-content>
+            <md-content ng-if="!post.excerpt" ng-bind-html="post.excerpt">
+            </md-content>
         </md-card-content>
         <div class="md-actions" layout="row" layout-align="end center">
             <md-button>Action 1</md-button>
