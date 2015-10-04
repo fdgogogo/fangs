@@ -1,6 +1,6 @@
 <div layout-fill>
     <section>
-        <div layout-align="center">
+        <div layout-align="center" ui-view="">
             <md-list>
                 <div ng-repeat="category in blog.categories | orderBy:'rank'">
                     <md-list-item ng-click="blog.jumpToCategory(category.slug)">

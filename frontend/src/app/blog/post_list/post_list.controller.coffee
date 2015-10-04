@@ -6,7 +6,7 @@ angular.module "angular"
     $stateParams['slug']).getList('posts').$object
 
   vm.jumpToPost = (slug) ->
-    $state.go('blog.detail', {'slug': slug})
+    $state.go('blog.post', {'slug': slug})
 
   return vm
 

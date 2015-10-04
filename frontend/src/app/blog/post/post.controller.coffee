@@ -3,7 +3,7 @@ angular.module "angular"
   vm = this
   vm.post = Restangular.one(
     'blog_post',
-    $stateParams['postSlug']
+    $stateParams['slug']
   ).get().$object
   vm.log = ->
     console.log(vm.post)
