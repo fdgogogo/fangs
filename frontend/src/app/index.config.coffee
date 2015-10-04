@@ -18,7 +18,6 @@ angular.module "angular"
     if operation == 'getList'
 
       extractedData = data['objects']
-
       meta = angular.copy(data)
       delete meta['objects']
       extractedData['meta'] = meta

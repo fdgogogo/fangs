@@ -3,10 +3,10 @@ angular.module 'angular', [
   'ngCookies',
   'ngTouch',
   'ngSanitize',
-  'ngRoute',
   'ngMaterial',
 
   'restangular',
   'ui.gravatar',
+  'ui.router',
   'angularMoment'
 ]
