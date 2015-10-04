@@ -1,5 +1,5 @@
 angular.module "angular"
-.config ($logProvider, toastr, $locationProvider, RestangularProvider, $mdThemingProvider) ->
+.config ($logProvider, toastr, $breadcrumbProvider, $locationProvider, RestangularProvider, $mdThemingProvider) ->
   # Enable log
   $logProvider.debugEnabled true
   # Set options third-party lib
@@ -29,3 +29,6 @@ angular.module "angular"
     .primaryPalette('indigo')
     .accentPalette('blue')
 
+  $breadcrumbProvider.setOptions({
+    templateUrl: '/app/components/breadcrumbs/breadcrumbs.html'
+  });

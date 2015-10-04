@@ -8,5 +8,6 @@ angular.module 'angular', [
   'restangular',
   'ui.gravatar',
   'ui.router',
-  'angularMoment'
+  'angularMoment',
+  'ncy-angular-breadcrumb'
 ]

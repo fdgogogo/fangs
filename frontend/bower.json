@@ -4,6 +4,7 @@
   "dependencies": {
     "angular": "~1.4.0",
     "angular-animate": "~1.4.0",
+    "angular-breadcrumb": "~0.4.1",
     "angular-cookies": "~1.4.0",
     "angular-gravatar": "~0.4.1",
     "angular-material": "~0.9.7",
