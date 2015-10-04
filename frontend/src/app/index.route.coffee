@@ -38,7 +38,7 @@ angular.module "angular"
         templateUrl: "/app/blog/post_list/post/post.html"
         controller: "BlogPostController as post"
         ncyBreadcrumb: {
-          label: 'Detail'
+          label: '{{ post.post.title }}'
         }
 
     $urlRouterProvider.otherwise('/')
