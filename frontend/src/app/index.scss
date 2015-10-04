@@ -70,6 +70,20 @@ section.jumbotron {
 #side-nav {
   height: 100%;
 }
+
+ol.breadcrumb {
+  list-style: none;
+  padding: 16px;
+  li {
+    display: inline-block;
+    font-size: 0.75em;
+    color: #dddddd;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
 /**
  *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

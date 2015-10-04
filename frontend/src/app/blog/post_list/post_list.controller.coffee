@@ -1,7 +1,13 @@
 angular.module "angular"
-.controller "BlogPostListController", ($timeout, $routeParams, Restangular) ->
+.controller "BlogPostListController", ($timeout, $state, $stateParams,
+                                       Restangular) ->
   vm = this
+  console.log($stateParams)
   vm.posts = Restangular.one('blog_category',
-    $routeParams['categorySlug']).getList('posts').$object
+    $stateParams['categorySlug']).getList('posts').$object
+
+  vm.jumpToPost = (slug) ->
+    $state.go('blog.categories.posts.detail', {'postSlug': slug})
+
   return vm
 

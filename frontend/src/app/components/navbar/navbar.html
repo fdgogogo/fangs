@@ -17,20 +17,24 @@
                                   ng-if="menuItem.type == 'action'"
                                   ng-style="menuBackground($index)"
                                   class="md-default-warm">
-                    {{ menuItem.name }}
+                        {{ menuItem.name }}
                     </md-list-item>
 
-                    <md-divider ng-if="menuItem.type == 'divider'"></md-divider>
+                    <md-divider
+                            ng-if="menuItem.type == 'divider'"></md-divider>
                 </span>
             </md-list>
-
         </md-sidenav>
-        <md-toolbar class="md-tall md-accent" ng-controller="ToolbarCtrl">
-          <h2 class="md-toolbar-tools">
-            <span>{{ title }}</span>
-          </h2>
-        </md-toolbar>
-        <md-content flex ng-transclude></md-content>
+        <section layout="column" flex>
+            <md-toolbar class="md-tall md-accent" ng-controller="ToolbarCtrl" flex>
+                <h2 class="md-toolbar-tools">
+                    <span>{{ title }}</span>
+                </h2>
+                <div ncy-breadcrumb></div>
+            </md-toolbar>
+            <md-content flex ng-transclude></md-content>
+        </section>
+
         <md-sidenav class="md-sidenav-right md-whiteframe-z2"
                     md-component-id="right" flex>
             <md-toolbar class="md-theme-light">

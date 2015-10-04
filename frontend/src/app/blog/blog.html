@@ -1,14 +1,3 @@
-<div layout-fill>
-    <section>
-        <h1>文章分类</h1>
-    </section>
-    <section>
-        <div layout-align="center">
-            <md-card ng-repeat="category in blog.categories | orderBy:'rank'">
-                <h3>{{ category.title }}</h3>
-                <p>{{ category.description }}</p>
-                <p><a ng-href="/blog/categories/{{ category.slug }}">{{ category.title}}</a></p>
-            </md-card>
-        </div>
-    </section>
+<div ui-view>
+    <a ui-sref="blog.category">categories</a>
 </div>
