@@ -1,0 +1,15 @@
+<div layout-fill ui-view>
+    <section>
+        <div layout-align="center">
+            <md-list>
+                <div ng-repeat="category in blogCategory.categories | orderBy:'rank'">
+                    <md-list-item
+                            ng-click="blogCategory.jumpToCategory(category.slug)">
+                        <p>{{ category.title }}</p>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                </div>
+            </md-list>
+        </div>
+    </section>
+</div>

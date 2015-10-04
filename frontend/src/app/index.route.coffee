@@ -35,7 +35,7 @@ angular.module "angular"
 
       .state 'blog.categories.posts.detail',
         url: "/{postSlug}"
-        templateUrl: "/app/blog/post/categories.html"
+        templateUrl: "/app/blog/post_list/post/post.html"
         controller: "BlogPostController as post"
         ncyBreadcrumb: {
           label: 'Detail'

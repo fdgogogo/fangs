@@ -1,4 +1,4 @@
-<md-content class="md-padding">
+<md-content class="md-padding" ui-view>
     <md-card ng-repeat="post in postList.posts">
         <md-card-content>
             <h2 class="md-title" ng-click="postList.jumpToPost(post.slug)">
