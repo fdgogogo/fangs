@@ -1,8 +1,8 @@
 <md-content class="md-padding">
     <md-card ng-repeat="post in postList.posts">
         <md-card-content>
-            <h2 class="md-title">
-                <a ng-href="/blog/post/{{ post.slug }}">{{ post.title }}</a>
+            <h2 class="md-title" ng-click="postList.jumpToPost(post.slug)">
+                {{ post.title }}
             </h2>
             <md-content></md-content>
         </md-card-content>

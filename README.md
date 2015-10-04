@@ -1,19 +1,11 @@
 # Fangs
 [![Build Status](https://travis-ci.org/fdgogogo/fangs.svg?branch=master)](https://travis-ci.org/fdgogogo/fangs)
 
-This is an experimental project.
+Source code for [fangs.work](http://fangs.work)
+
+(Working)
 
 ## Technology overview
-
-- Python 3.4.3
-- Flask
-- PostgreSQL
-- AngularJS
-    - Angular Material
-- Docker
-- Elasticsearch
-
-## Installation (todo)
 
 ```
 docker-compose up -d
