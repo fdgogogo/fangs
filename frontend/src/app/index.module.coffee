@@ -3,10 +3,11 @@ angular.module 'angular', [
   'ngCookies',
   'ngTouch',
   'ngSanitize',
-  'ngRoute',
   'ngMaterial',
 
   'restangular',
   'ui.gravatar',
-  'angularMoment'
+  'ui.router',
+  'angularMoment',
+  'ncy-angular-breadcrumb'
 ]
