@@ -10,12 +10,11 @@ app = Flask(__name__)
 app.config.from_pyfile('config.py')
 
 CORS(app)
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 
 admin = Admin(app, name='Fangs', template_mode='bootstrap3')
 
-api_manager = APIManager()
-api_manager.init_app(app, flask_sqlalchemy_db=db)
+api_manager = APIManager(app, flask_sqlalchemy_db=db)
 
 import backend.blog
 import backend.blog.models

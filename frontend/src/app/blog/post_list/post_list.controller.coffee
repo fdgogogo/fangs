@@ -2,7 +2,6 @@ angular.module "angular"
 .controller "BlogPostListController", ($timeout, $state, $stateParams,
                                        Restangular) ->
   vm = this
-  console.log($stateParams)
   vm.posts = Restangular.one('blog_category',
     $stateParams['categorySlug']).getList('posts').$object
 
