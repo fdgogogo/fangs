@@ -8,8 +8,10 @@
                             <md-card-content>
                                 <h1 class="md-display-2">{{ post.post.title }}</h1>
                                 <md-divider></md-divider>
-                                <md-content
-                                        ng-bind-html="post.post.content"></md-content>
+                                <md-content>
+                                    <div btf-markdown="post.post.content">
+                                    </div>
+                                </md-content>
                             </md-card-content>
                         </md-card>
                     </md-content>
@@ -41,7 +43,4 @@
     <div offset-gt-md="33">
 
     </div>
-</div>
-<div hljs>
-    from __future__ import *
 </div>

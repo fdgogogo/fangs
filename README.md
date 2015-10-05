@@ -5,12 +5,6 @@ Source code for [fangs.work](http://fangs.work)
 
 (Working)
 
-## Technology overview
-
-```
-docker-compose up -d
-```
-
 
 ## LICENSE
 

@@ -10,5 +10,5 @@ angular.module 'angular', [
   'ui.router',
   'angularMoment',
   'ncy-angular-breadcrumb',
-  'hljs'
+  'btford.markdown'
 ]

@@ -5,7 +5,7 @@ angular.module "angular"
          $locationProvider,
          RestangularProvider,
          $mdThemingProvider,
-         hljsServiceProvider
+         markdownConverterProvider,
 ) ->
   # Enable log
   $logProvider.debugEnabled true
@@ -39,5 +39,8 @@ angular.module "angular"
   $breadcrumbProvider.setOptions
     templateUrl: '/app/components/breadcrumbs/breadcrumbs.html'
 
-  hljsServiceProvider.setOptions
-    tabReplace: '    '
+#  hljsServiceProvider.setOptions
+#    tabReplace: '    '
+
+  markdownConverterProvider.config
+    extensions: ['twitter', 'prettify']

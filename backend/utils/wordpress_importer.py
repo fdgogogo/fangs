@@ -152,9 +152,10 @@ class ImportWordpress(Command):
     def content_processor(content):
         content, count = re.subn(r'\[cci\]', '<code>', content)
         content, count = re.subn(r'\[/cci\]', '</code>', content)
-        content, count = re.subn(r'\[ccb.*?\]', '<div hljs no-escape>', content)
-        content, count = re.subn(r'\[/ccb.*?\]', '</div>', content)
+        content, count = re.subn(r'\[ccb.*?\]', '<pre><code>', content)
+        content, count = re.subn(r'\[/ccb.*?\]', '</code></pre>', content)
         content = html2text.html2text(content)
+        print(content)
         return content
 
     def add_post(self, **kwargs):

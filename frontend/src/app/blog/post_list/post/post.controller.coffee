@@ -9,6 +9,5 @@ angular.module "angular"
   .get()
   .then (post) ->
     vm.post = post
-    vm.post.content = $sce.trustAsHtml(post.content)
   vm.post = null
   return vm
