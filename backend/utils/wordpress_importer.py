@@ -147,6 +147,13 @@ class ImportWordpress(Command):
                     #     self.add_page(title=entry.title, content=content,
                     #                   tags=terms["tag"], old_id=old_id,
                     #                   old_parent_id=parent_id)
+    @staticmethod
+    def content_processor(content):
+        content, count = re.subn(r'\[cci\]', '<code>', content)
+        content, count = re.subn(r'\[/cci\]', '</code>', content)
+        content, count = re.subn(r'\[ccb.*?\]', '<pre><code>', content)
+        content, count = re.subn(r'\[/ccb.*?\]', '</code></pre>', content)
+        return content
 
     def add_post(self, **kwargs):
         from backend.blog.models import BlogPost, BlogCategory
@@ -156,7 +163,8 @@ class ImportWordpress(Command):
         title = kwargs.get('title')
         post.title = title[:128]
         post.slug = slugify(title)[:128]
-        post.content = kwargs.get('content')
+        post.content = self.content_processor(kwargs.get('content'))
+
         post.created = kwargs.get('pub_date')
         post.tags = kwargs.get('tags')
 
