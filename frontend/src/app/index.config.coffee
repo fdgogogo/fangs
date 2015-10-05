@@ -1,5 +1,12 @@
 angular.module "angular"
-.config ($logProvider, toastr, $breadcrumbProvider, $locationProvider, RestangularProvider, $mdThemingProvider) ->
+.config ($logProvider,
+         toastr,
+         $breadcrumbProvider,
+         $locationProvider,
+         RestangularProvider,
+         $mdThemingProvider,
+         hljsServiceProvider
+) ->
   # Enable log
   $logProvider.debugEnabled true
   # Set options third-party lib
@@ -31,3 +38,6 @@ angular.module "angular"
 
   $breadcrumbProvider.setOptions
     templateUrl: '/app/components/breadcrumbs/breadcrumbs.html'
+
+  hljsServiceProvider.setOptions
+    tabReplace: '    '
