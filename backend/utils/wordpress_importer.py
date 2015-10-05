@@ -8,7 +8,7 @@ is not tested, use at your own risk.
 """
 
 from __future__ import unicode_literals
-
+import html2text
 from collections import defaultdict
 from datetime import datetime, timedelta
 from time import mktime, timezone
@@ -154,6 +154,7 @@ class ImportWordpress(Command):
         content, count = re.subn(r'\[/cci\]', '</code>', content)
         content, count = re.subn(r'\[ccb.*?\]', '<div hljs no-escape>', content)
         content, count = re.subn(r'\[/ccb.*?\]', '</div>', content)
+        content = html2text.html2text(content)
         return content
 
     def add_post(self, **kwargs):
