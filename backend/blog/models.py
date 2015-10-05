@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+from sqlalchemy.dialects.postgresql import ARRAY
 
 from backend import db
-from sqlalchemy.dialects.postgresql import ARRAY
 
 
 class BlogCategory(db.Model):
