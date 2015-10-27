@@ -8,13 +8,13 @@ is not tested, use at your own risk.
 """
 
 from __future__ import unicode_literals
-import html2text
 from collections import defaultdict
 from datetime import datetime, timedelta
 from time import mktime, timezone
 from xml.dom.minidom import parse
 import re
 
+import html2text
 from flask.ext.script import Command, Option
 from flask.ext.script.commands import InvalidCommand
 from slugify import slugify
@@ -154,8 +154,11 @@ class ImportWordpress(Command):
         content, count = re.subn(r'\[/cci\]', '</code>', content)
         content, count = re.subn(r'\[ccb.*?\]', '<pre><code>', content)
         content, count = re.subn(r'\[/ccb.*?\]', '</code></pre>', content)
-        content = html2text.html2text(content)
-        print(content)
+        h = html2text.HTML2Text(bodywidth=79)
+        h.mark_code = True
+        content = h.handle(content)
+        content = content.replace('[code]', '```')
+        content = content.replace('[/code]', '```')
         return content
 
     def add_post(self, **kwargs):
