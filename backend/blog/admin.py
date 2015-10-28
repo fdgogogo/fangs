@@ -1,4 +1,5 @@
 from flask.ext.admin.contrib.sqla import ModelView
+from flask.ext.admin import AdminIndexView
 from flask_security import current_user
 from wtforms import TextAreaField
 from wtforms.widgets import TextArea
@@ -22,7 +23,7 @@ class CKTextAreaField(TextAreaField):
     widget = CKTextAreaWidget()
 
 
-class AuthorizedModelView(ModelView):
+class AuthorizationRequiredMixin(object):
     def is_accessible(self):
         if not current_user.is_active() or not current_user.is_authenticated():
             return False
@@ -43,6 +44,14 @@ class AuthorizedModelView(ModelView):
             else:
                 # login
                 return redirect(url_for('security.login', next=request.url))
+
+
+class AuthorizedIndexView(AuthorizationRequiredMixin, AdminIndexView):
+    pass
+
+
+class AuthorizedModelView(AuthorizationRequiredMixin, ModelView):
+    pass
 
 
 class BlogCategoryModelView(AuthorizedModelView):
@@ -83,7 +92,8 @@ def security_context_processor():
 
 admin = Admin(app,
               name='Fangs',
-              template_mode='bootstrap3')
+              template_mode='bootstrap3',
+              index_view=AuthorizedIndexView())
 
 admin.add_view(BlogCategoryModelView(models.BlogCategory, db.session))
 admin.add_view(BlogPostModelView(models.BlogPost, db.session))
