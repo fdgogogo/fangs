@@ -1,10 +1,13 @@
 angular.module "angular"
-.controller "BlogPostController", (Restangular, $stateParams) ->
+.controller "BlogPostController", (Restangular, $stateParams, $sce) ->
   vm = this
-  console.log($stateParams)
-  vm.post = Restangular.one(
+  request = Restangular
+  .one(
     'blog_post',
     $stateParams['postSlug']
-  ).get().$object
+  )
+  .get()
+  .then (post) ->
+    vm.post = post
+  vm.post = null
   return vm
-
