@@ -8,3 +8,4 @@ Flask-Restless
 awesome-slugify
 Flask-CORS
 psycopg2
+flask-security

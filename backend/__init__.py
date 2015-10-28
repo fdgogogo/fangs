@@ -1,6 +1,7 @@
 from flask.ext.admin import Admin
 
 from flask.ext.restless import APIManager
+from flask.ext.security import SQLAlchemyUserDatastore, Security
 
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask import Flask
@@ -18,6 +19,13 @@ api_manager = APIManager(app, flask_sqlalchemy_db=db)
 
 import backend.blog
 import backend.blog.models
+import backend.auth.models
+
+user_datastore = SQLAlchemyUserDatastore(
+    db,
+    backend.auth.models.User,
+    backend.auth.models.Role)
+security = Security(app, user_datastore)
 
 blog_post_api_blueprint = api_manager.create_api(
     backend.blog.models.BlogPost,
