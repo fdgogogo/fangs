@@ -9,3 +9,4 @@ awesome-slugify
 Flask-CORS
 psycopg2
 flask-security
+flask-login==0.2.11

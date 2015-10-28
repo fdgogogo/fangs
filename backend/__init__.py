@@ -1,5 +1,3 @@
-from flask.ext.admin import Admin
-
 from flask.ext.restless import APIManager
 from flask.ext.security import SQLAlchemyUserDatastore, Security
 
@@ -13,12 +11,10 @@ app.config.from_pyfile('config.py')
 CORS(app)
 db = SQLAlchemy(app)
 
-admin = Admin(app, name='Fangs', template_mode='bootstrap3')
+
 
 api_manager = APIManager(app, flask_sqlalchemy_db=db)
 
-import backend.blog
-import backend.blog.models
 import backend.auth.models
 
 user_datastore = SQLAlchemyUserDatastore(
@@ -26,6 +22,10 @@ user_datastore = SQLAlchemyUserDatastore(
     backend.auth.models.User,
     backend.auth.models.Role)
 security = Security(app, user_datastore)
+
+import backend.blog
+import backend.blog.models
+
 
 blog_post_api_blueprint = api_manager.create_api(
     backend.blog.models.BlogPost,
