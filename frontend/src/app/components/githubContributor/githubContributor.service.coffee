@@ -9,7 +9,7 @@ angular.module "angular"
 
       getContributorsFailed = (error) ->
         $log.error 'XHR Failed for getContributors.\n' + angular.toJson(error.data, true)
-        return
+
 
       if !limit
         limit = 30

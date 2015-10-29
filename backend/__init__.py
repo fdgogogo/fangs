@@ -11,8 +11,6 @@ app.config.from_pyfile('config.py')
 CORS(app)
 db = SQLAlchemy(app)
 
-
-
 api_manager = APIManager(app, flask_sqlalchemy_db=db)
 
 import backend.auth.models
@@ -25,7 +23,6 @@ security = Security(app, user_datastore)
 
 import backend.blog
 import backend.blog.models
-
 
 blog_post_api_blueprint = api_manager.create_api(
     backend.blog.models.BlogPost,
