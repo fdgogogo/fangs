@@ -24,7 +24,8 @@ class CKTextAreaField(TextAreaField):
 
 
 class AuthorizationRequiredMixin(object):
-    def is_accessible(self):
+    @staticmethod
+    def is_accessible():
         if not current_user.is_active() or not current_user.is_authenticated():
             return False
 
