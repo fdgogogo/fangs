@@ -61,4 +61,4 @@ angular.module "angular"
       data
 
     @getTec = getTec
-    return
+
