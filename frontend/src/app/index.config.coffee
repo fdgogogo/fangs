@@ -1,5 +1,12 @@
 angular.module "angular"
-.config ($logProvider, toastr, $breadcrumbProvider, $locationProvider, RestangularProvider, $mdThemingProvider) ->
+.config ($logProvider,
+         toastr,
+         $breadcrumbProvider,
+         $locationProvider,
+         RestangularProvider,
+         $mdThemingProvider,
+         markedProvider
+) ->
   # Enable log
   $logProvider.debugEnabled true
   # Set options third-party lib
@@ -31,3 +38,13 @@ angular.module "angular"
 
   $breadcrumbProvider.setOptions
     templateUrl: '/app/components/breadcrumbs/breadcrumbs.html'
+
+  markedProvider.setOptions
+    gfm: true
+    tables: true
+    highlight: (code, lang) ->
+      if lang
+        hljs.highlight(lang, code, true).value
+      else
+        hljs.highlightAuto(code).value
+

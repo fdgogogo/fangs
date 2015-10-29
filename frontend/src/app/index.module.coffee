@@ -9,5 +9,6 @@ angular.module 'angular', [
   'ui.gravatar',
   'ui.router',
   'angularMoment',
-  'ncy-angular-breadcrumb'
+  'ncy-angular-breadcrumb',
+  'hc.marked'
 ]

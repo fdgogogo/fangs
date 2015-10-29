@@ -8,13 +8,13 @@ is not tested, use at your own risk.
 """
 
 from __future__ import unicode_literals
-
 from collections import defaultdict
 from datetime import datetime, timedelta
 from time import mktime, timezone
 from xml.dom.minidom import parse
 import re
 
+import html2text
 from flask.ext.script import Command, Option
 from flask.ext.script.commands import InvalidCommand
 from slugify import slugify
@@ -104,10 +104,10 @@ class ImportWordpress(Command):
         # get to them.
         xml = parse(url)
         xmlitems = xml.getElementsByTagName("item")
-
         for (i, entry) in enumerate(feed["entries"]):
             # Get a pointer to the right position in the minidom as well.
             xmlitem = xmlitems[i]
+            excerpt = getattr(entry, 'excerpt_encoded')
             content = linebreaks(self.wp_caption(entry.content[0]["value"]))
 
             # Get the time struct of the published date if possible and
@@ -125,6 +125,7 @@ class ImportWordpress(Command):
                 post = self.add_post(title=entry.title, content=content,
                                      pub_date=pub_date, tags=terms["post_tag"],
                                      categories=terms["category"],
+                                     excerpt=excerpt,
                                      old_url=entry.id)
 
                 # Get the comments from the xml doc.
@@ -147,6 +148,18 @@ class ImportWordpress(Command):
                     #     self.add_page(title=entry.title, content=content,
                     #                   tags=terms["tag"], old_id=old_id,
                     #                   old_parent_id=parent_id)
+    @staticmethod
+    def content_processor(content):
+        content, count = re.subn(r'\[cci\]', '<code>', content)
+        content, count = re.subn(r'\[/cci\]', '</code>', content)
+        content, count = re.subn(r'\[ccb.*?\]', '<pre><code>', content)
+        content, count = re.subn(r'\[/ccb.*?\]', '</code></pre>', content)
+        h = html2text.HTML2Text(bodywidth=79)
+        h.mark_code = True
+        content = h.handle(content)
+        content = content.replace('[code]', '```')
+        content = content.replace('[/code]', '```')
+        return content
 
     def add_post(self, **kwargs):
         from backend.blog.models import BlogPost, BlogCategory
@@ -156,7 +169,8 @@ class ImportWordpress(Command):
         title = kwargs.get('title')
         post.title = title[:128]
         post.slug = slugify(title)[:128]
-        post.content = kwargs.get('content')
+        post.content = self.content_processor(kwargs.get('content'))
+        post.excerpt = kwargs.get('excerpt')
         post.created = kwargs.get('pub_date')
         post.tags = kwargs.get('tags')
 

@@ -7,7 +7,7 @@ angular.module "angular"
       activate = ->
         getContributors().then ->
           $log.info 'Activated Contributors View'
-          return
+
 
       getContributors = ->
         githubContributor.getContributors(10).then (data) ->
@@ -16,7 +16,7 @@ angular.module "angular"
 
       vm.contributors = []
       activate()
-      return
+
 
     linkFunc = (scope, el, attr, vm) ->
       watcher = undefined
@@ -29,17 +29,17 @@ angular.module "angular"
       el.addClass 'acme-malarkey'
       angular.forEach scope.extraValues, (value) ->
         typist.type(value).pause().delete()
-        return
+
       watcher = scope.$watch('vm.contributors', ->
         angular.forEach vm.contributors, (contributor) ->
           typist.type(contributor.login).pause().delete()
-          return
-        return
+
+
       )
       scope.$on '$destroy', ->
         watcher()
-        return
-      return
+
+
 
     directive =
       restrict: 'E'
