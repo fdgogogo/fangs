@@ -72,14 +72,17 @@ section.jumbotron {
 
 ol.breadcrumb {
   list-style: none;
-  padding: 16px;
+  margin: 0;
   li {
-    display: inline-block;
+    display: inline;
     font-size: 0.75em;
     color: #dddddd;
     a {
       text-decoration: none;
       color: white;
+    }
+    h2 {
+      display: block;
     }
   }
 }
