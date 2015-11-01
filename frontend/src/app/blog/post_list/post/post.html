@@ -1,9 +1,10 @@
-<div layout="row" layout-wrap>
+<div layout="row" layout-wrap xmlns="http://www.w3.org/1999/html">
     <div flex>
         <md-content class="md-padding">
-            <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="Content">
-                    <md-content>
+            <section>
+                <md-subheader>Article</md-subheader>
+                <md-content
+                        style="word-wrap: break-word; -ms-word-break: break-all;word-break: break-all;white-space: pre-wrap;">
                         <md-card>
                             <md-card-content>
                                 <h1 class="md-display-1">{{ post.post.title }}</h1>
@@ -15,8 +16,9 @@
                             </md-card-content>
                         </md-card>
                     </md-content>
-                </md-tab>
-                <md-tab label="Comments">
+            </section>
+            <section>
+                <md-subheader>Comments</md-subheader>
                     <md-content>
                         <md-list>
                             <md-list-item class="md-3-line"
@@ -36,8 +38,7 @@
                             </md-list-item>
                         </md-list>
                     </md-content>
-                </md-tab>
-            </md-tabs>
+            </section>
         </md-content>
     </div>
     <div offset-gt-md="33">
