@@ -1,17 +1,19 @@
 <md-content class="md-padding" ui-view>
-    <md-card ng-repeat="post in postList.posts">
-        <md-card-content>
-            <h2 class="md-title" ng-click="postList.jumpToPost(post.slug)">
-                {{ post.title }}
-            </h2>
-            <md-content ng-if="post.excerpt" ng-bind-html="post.excerpt">
-            </md-content>
-            <md-content ng-if="!post.excerpt" ng-bind-html="post.excerpt">
-            </md-content>
-        </md-card-content>
-        <div class="md-actions" layout="row" layout-align="end center">
-            <md-button>Action 1</md-button>
-            <md-button>Action 2</md-button>
-        </div>
-    </md-card>
+    <div layout-align="center">
+        <md-list>
+            <div ng-repeat="post in postList.posts">
+                <md-list-item ng-click="postList.jumpToPost(post.slug)">
+                    <div class="md-list-item-text">
+                        <h3 ng-click="postList.jumpToPost(post.slug)">
+                            {{ post.title }}
+                        </h3>
+
+                        <div ng-if="post.excerpt" ng-bind-html="post.excerpt"></div>
+                        <div ng-if="!post.excerpt" ng-bind-html="post.excerpt"></div>
+                    </div>
+                </md-list-item>
+                <md-divider></md-divider>
+            </div>
+        </md-list>
+    </div>
 </md-content>

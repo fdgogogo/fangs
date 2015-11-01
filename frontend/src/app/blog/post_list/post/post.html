@@ -2,20 +2,14 @@
     <div flex>
         <md-content class="md-padding">
             <section>
-                <md-subheader>Article</md-subheader>
-                <md-content
-                        style="word-wrap: break-word; -ms-word-break: break-all;word-break: break-all;white-space: pre-wrap;">
-                        <md-card>
-                            <md-card-content>
-                                <h1 class="md-display-1">{{ post.post.title }}</h1>
-                                <md-divider></md-divider>
-                                <md-content>
-                                    <div marked="post.post.content">
-                                    </div>
-                                </md-content>
-                            </md-card-content>
-                        </md-card>
-                    </md-content>
+                <md-card>
+                    <md-card-content>
+                        <md-content>
+                            <div marked="post.post.content">
+                            </div>
+                        </md-content>
+                    </md-card-content>
+                </md-card>
             </section>
             <section>
                 <md-subheader>Comments</md-subheader>
